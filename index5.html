@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header img {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 15px;
+            left: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form {
+            padding: 20px;
+        }
+
+        .form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .form input,
+        .form select,
+        .form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form button {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .form button:hover {
+            background-color: #374151;
+        }
+
+        .registrations {
+            padding: 20px;
+        }
+
+        .registrations h2 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .registrations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .registrations li {
+            background-color: #f9fafb;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/29/Anglican_logo.png" alt="Anglican Logo">
+        <h1>St Bartholomew Anglican Church</h1>
+    </div>
+    <div class="form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+        <label for="program">Select Program</label>
+        <select id="program">
+            <option value="Sunday Service">Sunday Service</option>
+            <option value="Bible Study">Bible Study</option>
+            <option value="Youth Fellowship">Youth Fellowship</option>
+            <option value="Choir Practice">Choir Practice</option>
+        </select>
+
+        <label for="message">Additional Message</label>
+        <textarea id="message" rows="4" placeholder="Enter additional message"></textarea>
+
+        <button onclick="register()">Register</button>
+    </div>
+    <div class="registrations">
+        <h2>Registered Participants</h2>
+        <ul id="registrations-list"></ul>
+    </div>
+</div>
+
+<footer>
+    &copy; 2023 St Bartholomew Anglican Church. Designed by #THAT TECH BOY#
+</footer>
+
+<script>
+    const registrationsList = document.getElementById('registrations-list');
+
+    function register() {
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const program = document.getElementById('program').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        // Validate form inputs
+        if (!name || !email || !phone || !program) {
+            alert('Please fill all required fields.');
+            return;
+        }
+
+        // Create registration entry
+        const registration = `
+            <li>
+                <strong>Name:</strong> ${name}<br>
+                <strong>Email:</strong> ${email}<br>
+                <strong>Phone:</strong> ${phone}<br>
+                <strong>Program:</strong> ${program}<br>
+                <strong>Message:</strong> ${message || 'N/A'}
+            </li>
+        `;
+
+        // Append registration to list
+        registrationsList.innerHTML += registration;
+
+        // Clear form
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('program').value = 'Sunday Service';
+        document.getElementById('message').value = '';
+
+        alert('Registration successful!');
+    }
+</script>
+
+</body>
+</html>
